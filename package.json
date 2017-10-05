@@ -1,7 +1,7 @@
 {
   "name": "podcasts-project",
   "version": "0.0.1",
-  "description": "Application for listening podcasts.",
+  "description": "Web application for listening podcasts.",
   "main": "''",
   "scripts": {
     "build": "webpack --config webpack.production.config.js --progress --profile --colors",
@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/alicoding/react-webpack-babel"
+    "url": "https://github.com/Nuglitch/podcasts-project"
   },
   "author": "Oscar Merce Pont",
   "license": "MIT",
@@ -19,6 +19,10 @@
     "node-sass": "^4.3.0",
     "react": "15.6.1",
     "react-dom": "15.4.2",
+    "react-redux": "^5.0.6",
+    "react-router-dom": "^4.2.2",
+    "redux": "^3.7.2",
+    "redux-logger": "^3.0.6",
     "sass-loader": "^6.0.2"
   },
   "devDependencies": {

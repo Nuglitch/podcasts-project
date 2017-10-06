@@ -1,0 +1,21 @@
+@import '../../styles/variables';
+
+.filter {
+
+	.count {
+		display: inline-block;
+		vertical-align: middle;
+		background-color: $theme-color-1;
+		border-radius: 3px;
+		padding: 3px;
+		color: $main-background-color;
+		font-weight: bold;
+		margin-right: 10px;
+	}
+
+	.input {
+		border: 1px solid $color-border-input;
+		padding: 5px;
+		border-radius: 3px;
+	}
+}

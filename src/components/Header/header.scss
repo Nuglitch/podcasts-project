@@ -1,12 +1,12 @@
 @import '../../styles/variables';
 
 .header {
-	border-bottom: 1px solid $theme-color-1;
+	border-bottom: 1px solid $color-theme-1;
 	padding: 5px 10px;
 
 	.title {
 		display: inline-block;
-		color: $theme-color-1;
+		color: $color-theme-1;
 		font-weight: bold;
 	}
 

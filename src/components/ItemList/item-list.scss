@@ -1,0 +1,25 @@
+@import '../../styles/variables';
+
+.item-list {
+    text-align: center;
+    padding: 0 5px;
+    @extend .target-slide;
+
+    & > * {
+        margin-bottom: 5px;
+    }
+
+    .icon {
+        margin-top: -27.5px;
+        border-radius: 50%;
+    }
+
+    .name {
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+
+    .author {
+        color: $color-secondary-font;
+    }
+}

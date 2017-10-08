@@ -1,13 +1,13 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
 
+import MyLink from 'components/MyLink/my-link';
 import './header.scss';
 
 const Header = () => (
 	<div className="header">
-		<Link  to="/">
+		<MyLink to="/">
 			<div className="title">Podcaster</div>
-		</Link>
+		</MyLink>
 		<div className="loading">g</div>
 	</div>
 );

@@ -3,10 +3,14 @@ import PropTypes from 'prop-types';
 
 import './filter.scss';
 
-const Filter = ({count}) => (
+const Filter = ({ count, setFilterValue }) => (
 	<div className="filter">
 		<div className="count">{count}</div>
-		<input className="input" placeholder="Filter podcasts..." />
+		<input
+			className="input"
+			placeholder="Filter podcasts..."
+			onChange={setFilterValue}
+		/>
 	</div>
 );
 

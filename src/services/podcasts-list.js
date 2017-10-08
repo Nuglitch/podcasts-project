@@ -12,12 +12,15 @@ const PodcastsList = {
 		});
 	},
 
-	filterByText: (data, text) => {
+	filterByText: (data, text, props) => {
+		const _text = text.trim();
 		return data.filter(element => {
-			return (
-				element['name'].search(new RegExp(text, 'i')) != -1 ||
-				element['author'].search(new RegExp(text, 'i')) != -1
-			);
+			for (let i = 0; i < props.length; i++) {
+				const found =
+					element[props[i]].search(new RegExp(_text, 'i')) != -1;
+				if (found) return true;
+			}
+			return false;
 		});
 	}
 };

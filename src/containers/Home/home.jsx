@@ -13,7 +13,10 @@ class Home extends React.Component {
 
 	render() {
 		let { podcasts, filter } = this.props;
-		podcasts = PodcastsList.filterByText(podcasts, filter);
+		podcasts = PodcastsList.filterByText(podcasts, filter, [
+			'name',
+			'author'
+		]);
 		return (
 			<div className="main-page-container">
 				<FilterContainer count={podcasts.length} />

@@ -10,7 +10,7 @@ export const podcastsListReducer = (
 		case types.FETCH_PODCASTS_SUCCESS:
 			return { ...state, podcasts: action.payload };
 		case types.FETCH_PODCASTS_ERROR:
-			return { ...state, data: action.payload };
+			return { ...state };
 		case types.SET_LIST_FILTER:
 			return { ...state, filter: action.payload };
 	}

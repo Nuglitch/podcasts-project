@@ -6,9 +6,7 @@ import './item-list-container.scss';
 
 class ItemListContainer extends React.Component {
 	render() {
-		const { podcast } = this.props;
-		if (!podcast) return null;
-		const { name, img, author, id } = podcast;
+		const { name, img, author, id } = this.props.podcast;
 		return (
 			<div className="item-list-container">
 				<MyLink to={`/podcast/${id}`}>

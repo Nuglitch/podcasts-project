@@ -4,30 +4,6 @@ import PodcastsList from 'services/podcasts-list';
 import LocalStorage from 'services/local-storage';
 import * as consts from 'consts';
 
-export const fetchPodcastsList = () => {
-	return dispatch => {
-		let podcasts = LocalStorage.load(consts.PODCASTS_KEY_STORAGE);
-		if (podcasts) {
-			dispatch(fetchPodcastsListSuccess(podcasts));
-		} else {
-			dispatch(fetchPodcastsListRequest());
-			return fetchPodcastsListAPI().then(([response, json]) => {
-				if (response.status === 200) {
-					podcasts = PodcastsList.getParsedData(json);
-					LocalStorage.save(
-						consts.PODCASTS_KEY_STORAGE,
-						podcasts,
-						24 * 60
-					); //1 day
-					dispatch(fetchPodcastsListSuccess(podcasts));
-				} else {
-					dispatch(fetchPodcastsListError());
-				}
-			});
-		}
-	};
-};
-
 const fetchPodcastsListRequest = () => {
 	return {
 		type: types.FETCH_PODCASTS_REQUEST
@@ -46,6 +22,33 @@ const fetchPodcastsListError = () => {
 		type: types.FETCH_PODCASTS_ERROR
 	};
 };
+
+export const fetchPodcastsList = () => {
+	return dispatch => {
+		let podcasts = LocalStorage.load(consts.PODCASTS_KEY_STORAGE);
+		if (podcasts) {
+			return dispatch(fetchPodcastsListSuccess(podcasts));
+		}
+		dispatch(fetchPodcastsListRequest());
+		return fetchPodcastsListAPI().then(([response, json]) => {
+			if (response.status === 200) {
+				podcasts = PodcastsList.getParsedData(json);
+				LocalStorage.save(
+					consts.PODCASTS_KEY_STORAGE,
+					podcasts,
+					24 * 60 //1 day
+				);
+				dispatch(fetchPodcastsListSuccess(podcasts));
+			} else {
+				throw new Error('Response status is not 200');
+			}
+		}).catch(e => {
+			console.log('Error', e);
+			dispatch(fetchPodcastsListError());
+		});
+	};
+};
+
 
 export const setListFilter = payload => {
 	return {

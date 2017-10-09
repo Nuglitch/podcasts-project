@@ -5,3 +5,11 @@ export const fetchPodcastsListAPI = () => {
 		Promise.all([response, response.json()])
 	);
 };
+
+export const fetchPodcastAPI = (id) => {
+	const URL =
+	`https://itunes.apple.com/lookup?id=${id}`;
+	return fetch(URL, { method: 'GET' }).then(response =>
+		Promise.all([response, response.json()])
+	);
+};

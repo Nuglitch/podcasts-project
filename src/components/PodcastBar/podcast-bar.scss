@@ -1,0 +1,36 @@
+@import '../../styles/variables';
+
+.podcast-bar {
+	@extend .target-slide;
+
+	& > * {
+        margin: 30px 10px;
+    }
+
+	.icon {
+		text-align: center;
+
+		& > img {
+			width: 90%;
+			border-radius: 5%;
+		}
+	}
+
+	.name {
+		font-weight: bold;
+	}
+
+	.author {
+		font-style: italic;
+	}
+
+	.summary {
+		.title {
+			font-weight: bold;
+			margin-bottom: 10px;
+		}
+		.text {
+			font-style: italic;
+		}
+	}
+}

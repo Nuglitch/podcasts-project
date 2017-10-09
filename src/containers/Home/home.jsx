@@ -3,13 +3,9 @@ import { connect } from 'react-redux';
 
 import FilterContainer from 'containers/FilterContainer/filter-container';
 import PodcastsListContainer from 'containers/PodcastsListContainer/podcasts-list-container';
-import { fetchPodcastsList } from 'actions/podcasts-list.actions';
 import PodcastsList from 'services/podcasts-list';
 
 class Home extends React.Component {
-	componentWillMount() {
-		this.props.fetchPodcastsList();
-	}
 
 	render() {
 		let { podcasts, filter } = this.props;
@@ -33,4 +29,4 @@ const mapStateToProps = state => {
 	};
 };
 
-export default connect(mapStateToProps, { fetchPodcastsList })(Home);
+export default connect(mapStateToProps)(Home);

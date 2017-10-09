@@ -1,0 +1,17 @@
+@mixin display-flex() {
+  	display: -webkit-flex;
+    display: -moz-flex;
+    display: flex;
+}
+
+@mixin justify-content($value) {
+  	-webkit-justify-content: $value;
+    -moz-justify-content: $value;
+    justify-content: $value;
+}
+
+@mixin flex-grow($value) {
+  	-webkit-flex-grow: $value;
+    -moz-flex-grow: $value;
+    flex-grow: $value;
+}

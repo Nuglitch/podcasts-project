@@ -1,14 +1,14 @@
 import types from 'actions/types';
 
 export const podcastDetailReducer = (
-	state = { podcast: {} },
+	state = { podcastEpisodes: [] },
 	action
 ) => {
 	switch (action.type) {
 		case types.FETCH_PODCAST_DETAIL_REQUEST:
-			return { ...state, podcast: {} };
+			return { ...state, podcastEpisodes: [] };
 		case types.FETCH_PODCAST_DETAIL_SUCCESS:
-			return { ...state, podcast: action.payload };
+			return { ...state, podcastEpisodes: action.payload };
 		case types.FETCH_PODCAST_DETAIL_ERROR:
 			return { ...state };
 	}

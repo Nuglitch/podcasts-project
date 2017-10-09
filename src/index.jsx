@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { AppContainer } from 'react-hot-loader';
 
-import App from 'app';
+import App from 'containers/App/app';
 import store from 'store';
 
 const render = Component =>
@@ -17,4 +17,4 @@ const render = Component =>
 	);
 
 render(App);
-if (module.hot) module.hot.accept('./app', () => render(App));
+if (module.hot) module.hot.accept('./containers/App/app', () => render(App));

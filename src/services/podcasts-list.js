@@ -28,12 +28,15 @@ const PodcastsList = {
 		if (!data || !data.length) {
 			return false;
 		}
-		for (let i = 0; i < data.length; i++) {
-			if (data[i][propName] === value) {
-				return data[i];
-			}
-		}
-		return false;
+		return data.find(e => (
+			e[propName] === value
+		));
+		// for (let i = 0; i < data.length; i++) {
+		// 	if (data[i][propName] === value) {
+		// 		return data[i];
+		// 	}
+		// }
+		// return false;
 	}
 };
 

@@ -2,7 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import PodcastEpisodesList from 'components/PodcastEpisodesList/podcast-episodes-list';
-import './podcast-episodes-list-container.scss'
 
 class PodcastEpisodesListContainer extends React.Component {
 

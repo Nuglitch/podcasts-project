@@ -13,6 +13,7 @@ class PodcastBarContainer extends React.Component {
 					name={name}
 					author={author}
 					summary={summary}
+					url={this.props.url}
 				/>
 			</div>
 		);

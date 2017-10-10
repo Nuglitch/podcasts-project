@@ -1,0 +1,15 @@
+@import '../../styles/variables';
+
+.episode {
+	@extend .target-slide;
+	padding: 10px;
+
+	.title {
+		font-weight: bold;
+		font-size: $font-size-big;
+	}
+
+	.audio-player {
+		width: 100%;
+	}
+}

@@ -1,6 +1,6 @@
 import types from './types';
 import { fetchPodcastsListAPI } from 'api';
-import PodcastsList from 'services/podcasts-list';
+import DataManager from 'services/data-manager';
 import LocalStorage from 'services/local-storage';
 import * as consts from 'consts';
 
@@ -32,7 +32,7 @@ export const fetchPodcastsList = () => {
 		dispatch(fetchPodcastsListRequest());
 		return fetchPodcastsListAPI().then(([response, json]) => {
 			if (response.status === 200) {
-				podcasts = PodcastsList.getParsedData(json);
+				podcasts = DataManager.getPodcastsListData(json);
 				LocalStorage.save(
 					consts.PODCASTS_KEY_STORAGE,
 					podcasts,

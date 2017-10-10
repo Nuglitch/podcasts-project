@@ -7,6 +7,16 @@ const CoutElementsListView = ({ num }) => {
 	return <div className="header-list">Episodes: {num}</div>;
 };
 
+const getTableCell = (text, path) => {
+	return (
+		<td>
+			<MyLink to={path}>
+				{text}
+			</MyLink>
+		</td>
+	);
+};
+
 const PodcastEpisodesList = ({ episodes, url }) => {
 	return (
 		<div className="podcast-episodes-list">
@@ -23,21 +33,9 @@ const PodcastEpisodesList = ({ episodes, url }) => {
 					{episodes.map((e, k) => {
 						return (
 							<tr key={k}>
-								<td>
-									<MyLink to={`${url}/episode/${e.id}`}>
-										{e.title}
-									</MyLink>
-								</td>
-								<td>
-									<MyLink to={`${url}/episode/${e.id}`}>
-										{e.pubDate}
-									</MyLink>
-								</td>
-								<td>
-									<MyLink to={`${url}/episode/${e.id}`}>
-										{e.duration}
-									</MyLink>
-								</td>
+								{getTableCell(e.title, `${url}/episode/${e.id}`)}
+								{getTableCell(e.pubDate, `${url}/episode/${e.id}`)}
+								{getTableCell(e.duration, `${url}/episode/${e.id}`)}
 							</tr>
 						);
 					})}

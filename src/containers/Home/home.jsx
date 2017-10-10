@@ -3,13 +3,13 @@ import { connect } from 'react-redux';
 
 import FilterContainer from 'containers/FilterContainer/filter-container';
 import PodcastsListContainer from 'containers/PodcastsListContainer/podcasts-list-container';
-import PodcastsList from 'services/podcasts-list';
+import DataManager from 'services/data-manager';
 
 class Home extends React.Component {
 
 	render() {
 		let { podcasts, filter } = this.props;
-		podcasts = PodcastsList.filterByText(podcasts, filter, [
+		podcasts = DataManager.filterByText(podcasts, filter, [
 			'name',
 			'author'
 		]);

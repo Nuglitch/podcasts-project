@@ -2,13 +2,16 @@
 
 .podcast-bar {
 	@extend .target-slide;
+	overflow-wrap: break-word;
 
 	& > * {
-        margin: 30px 10px;
+        padding: 20px 10px;
     }
 
 	.icon {
 		text-align: center;
+		border-bottom: 1px solid $color-border-input;
+		padding: 20px 10px;
 
 		& > img {
 			width: 70%;
@@ -17,7 +20,9 @@
 	}
 
 	.title-content {
-		margin-left: 10px;
+		padding: 20px 10px;
+		border-bottom: 1px solid $color-border-input;
+
 		.name {
 			font-weight: bold;
 		}
@@ -29,6 +34,7 @@
 	}
 
 	.summary {
+		padding: 20px 10px;
 		.title {
 			font-weight: bold;
 			margin-bottom: 10px;

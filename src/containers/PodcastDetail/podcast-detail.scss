@@ -2,5 +2,11 @@
 
 .podcast-detail-page-container {
 	@include display-flex();
-	@include justify-content(space-between);
+
+	.routes-container {
+		@include flex-grow(1);
+		margin-left: 50px;
+		margin-bottom: 20px;
+		width: 100%;
+	}
 }

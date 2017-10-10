@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import './episode.scss';
 
@@ -14,6 +15,12 @@ const Episode = ({ title, description, enclosure }) => {
 			</audio>
 		</div>
 	);
+};
+
+Episode.propTypes = {
+	title: PropTypes.string.isRequired,
+	description: PropTypes.string.isRequired,
+	enclosure: PropTypes.string.isRequired
 };
 
 export default Episode;

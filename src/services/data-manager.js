@@ -25,12 +25,21 @@ const _getParsedDate = date => {
 	return `${day}-${month}-${year}`;
 };
 
+const _isUrl = s => {
+   var regexp = /((ftp|http|https):\/\/)?(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/
+   return regexp.test(s);
+}
+
 const _getParsedId = id => {
-	const splitId = id.split('.com/');
-	if (!splitId[1]) {
+	if (!_isUrl(id)) {
+        return id; //not url id
+    }
+	let url = id.replace(/(ftp|http|https):\/\//, '');
+	url = url.split(/\.[a-z]{1,3}\//);
+	if (!url[1]) {
 		return id; //not url id
 	}
-	return splitId[1].replace('/', '-');
+	return url[1].replace(/\/|\?/g, '-');
 };
 
 const _getParsedDuration = duration => {

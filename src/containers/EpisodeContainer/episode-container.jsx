@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import DataManager from 'services/data-manager';
@@ -12,6 +13,10 @@ class EpisodeContainer extends React.Component {
 			'id',
 			match.params.episodeId
 		);
+		if (!episode) {
+			console.log('Episode not found');
+			return null;
+		}
 		return (
 			<div className="episode-container">
 				<Episode
@@ -23,6 +28,17 @@ class EpisodeContainer extends React.Component {
 		);
 	}
 }
+
+EpisodeContainer.propTypes = {
+	podcastEpisodes: PropTypes.arrayOf(
+		PropTypes.shape({
+			title: PropTypes.string,
+			description: PropTypes.string,
+			enclosure: PropTypes.string
+		})
+	).isRequired,
+	match: PropTypes.object.isRequired
+};
 
 const mapStateToProps = state => {
 	return {

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import Filter from 'components/Filter/filter';
@@ -21,5 +22,10 @@ class FilterContainer extends React.Component {
 		);
 	}
 }
+
+FilterContainer.propTypes = {
+	count: PropTypes.number.isRequired,
+	setListFilter: PropTypes.func.isRequired
+};
 
 export default connect(null, { setListFilter })(FilterContainer);

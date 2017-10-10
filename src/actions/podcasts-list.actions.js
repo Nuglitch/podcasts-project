@@ -3,6 +3,7 @@ import { fetchPodcastsListAPI } from 'api';
 import DataManager from 'services/data-manager';
 import LocalStorage from 'services/local-storage';
 import * as consts from 'consts';
+import { startLoading, finishLoading } from './app.actions';
 
 const fetchPodcastsListRequest = () => {
 	return {
@@ -25,8 +26,10 @@ const fetchPodcastsListError = () => {
 
 export const fetchPodcastsList = () => {
 	return dispatch => {
+		dispatch(startLoading());
 		let podcasts = LocalStorage.load(consts.PODCASTS_KEY_STORAGE);
 		if (podcasts) {
+			dispatch(finishLoading());
 			return dispatch(fetchPodcastsListSuccess(podcasts));
 		}
 		dispatch(fetchPodcastsListRequest());
@@ -38,12 +41,14 @@ export const fetchPodcastsList = () => {
 					podcasts,
 					24 * 60 //1 day
 				);
+				dispatch(finishLoading());
 				dispatch(fetchPodcastsListSuccess(podcasts));
 			} else {
 				throw new Error('Response status is not 200');
 			}
 		}).catch(e => {
-			console.log('Error', e);
+			console.log('Fetch error -> ', e);
+			dispatch(finishLoading());
 			dispatch(fetchPodcastsListError());
 		});
 	};

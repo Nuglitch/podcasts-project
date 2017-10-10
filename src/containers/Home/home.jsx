@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import FilterContainer from 'containers/FilterContainer/filter-container';
@@ -21,6 +22,18 @@ class Home extends React.Component {
 		);
 	}
 }
+
+Home.propTypes = {
+	podcasts: PropTypes.arrayOf(
+		PropTypes.shape({
+			img: PropTypes.string,
+			name: PropTypes.string,
+			author: PropTypes.string,
+			id: PropTypes.string
+		})
+	).isRequired,
+	filter: PropTypes.string.isRequired
+};
 
 const mapStateToProps = state => {
 	return {

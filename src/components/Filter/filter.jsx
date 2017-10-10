@@ -15,7 +15,8 @@ const Filter = ({ count, setFilterValue }) => (
 );
 
 Filter.propTypes = {
-	count: PropTypes.number.isRequired
+	count: PropTypes.number.isRequired,
+	setFilterValue: PropTypes.func.isRequired
 };
 
 export default Filter;

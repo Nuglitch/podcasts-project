@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Route } from 'react-router-dom';
 
@@ -17,6 +18,10 @@ class PodcastDetail extends React.Component {
 	render() {
 		const { podcasts, match } = this.props;
 		const podcast = DataManager.getItemByProp(podcasts, 'id', match.params.podcastId);
+		if (!podcast) {
+			console.log('Podcast not found');
+			return null;
+		}
 		return (
 			<div className="podcast-detail-page-container">
 				<PodcastBarContainer podcast={ podcast } url={match.url}/>
@@ -28,6 +33,20 @@ class PodcastDetail extends React.Component {
 		);
 	}
 }
+
+PodcastDetail.propTypes = {
+	podcasts: PropTypes.arrayOf(
+		PropTypes.shape({
+			img: PropTypes.string,
+			name: PropTypes.string,
+			author: PropTypes.string,
+			summary: PropTypes.string,
+			id: PropTypes.string
+		})
+	).isRequired,
+	match: PropTypes.object.isRequired,
+	fetchPodcastsDetail: PropTypes.func.isRequired
+};
 
 const mapStateToProps = state => {
 	return {

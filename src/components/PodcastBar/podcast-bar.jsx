@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import MyLink from 'components/MyLink/my-link';
 import './podcast-bar.scss';
@@ -23,6 +24,14 @@ const PodcastBar = ({ img, name, author, summary, url }) => {
 			</div>
 		</div>
 	);
+};
+
+PodcastBar.propTypes = {
+	img: PropTypes.string.isRequired,
+	name: PropTypes.string.isRequired,
+	author: PropTypes.string.isRequired,
+	summary: PropTypes.string.isRequired,
+	url: PropTypes.string.isRequired
 };
 
 export default PodcastBar;

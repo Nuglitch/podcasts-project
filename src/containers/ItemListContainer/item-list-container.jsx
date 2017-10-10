@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import MyLink from 'components/MyLink/my-link';
 import ItemList from 'components/ItemList/item-list';
@@ -16,5 +17,14 @@ class ItemListContainer extends React.Component {
 		);
 	}
 }
+
+ItemListContainer.propTypes = {
+	podcast: PropTypes.shape({
+		img: PropTypes.string,
+		name: PropTypes.string,
+		author: PropTypes.string,
+		id: PropTypes.string
+	}).isRequired
+};
 
 export default ItemListContainer;

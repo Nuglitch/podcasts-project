@@ -3,6 +3,7 @@
 .header {
 	border-bottom: 1px solid $color-theme-1;
 	padding: 5px 10px;
+	height: 25px;
 
 	.title {
 		display: inline-block;
@@ -13,5 +14,6 @@
 	.loading {
 		display: inline-block;
 		float: right;
+		height: 20px;
 	}
 }

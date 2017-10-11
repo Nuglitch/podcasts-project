@@ -26,19 +26,19 @@ const _getParsedDate = date => {
 	return `${day}-${month}-${year}`;
 };
 
-const _isUrl = s => {
-	var regexp = /((ftp|http|https):\/\/)?(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/;
+const _hasSlash = s => {
+	var regexp = /\//;
 	return regexp.test(s);
 };
 
 const _getParsedId = id => {
-	if (!_isUrl(id)) {
+	if (!_hasSlash(id)) {
 		return id; //not url id
 	}
 	let url = id.replace(/(ftp|http|https):\/\//, '');
 	url = url.split(/\.[a-z]{1,3}\//);
 	if (!url[1]) {
-		return id; //not url id
+		return id.replace(/\/|\?/g, '-'); //not url id but has slashes
 	}
 	return url[1].replace(/\/|\?/g, '-');
 };

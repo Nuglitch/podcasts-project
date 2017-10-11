@@ -14,8 +14,8 @@ class EpisodeContainer extends React.Component {
 			match.params.episodeId
 		);
 		if (!episode) {
-			console.log('Episode not found');
-			return null;
+			console.log('Episode not found.');
+			return <div>Episode not found.</div>;
 		}
 		return (
 			<div className="episode-container">

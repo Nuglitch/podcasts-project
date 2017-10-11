@@ -19,8 +19,8 @@ class PodcastDetail extends React.Component {
 		const { podcasts, match } = this.props;
 		const podcast = DataManager.getItemByProp(podcasts, 'id', match.params.podcastId);
 		if (!podcast) {
-			console.log('Podcast not found');
-			return null;
+			console.log('Podcast not found.');
+			return <div>Podcast not found.</div>;
 		}
 		return (
 			<div className="podcast-detail-page-container">

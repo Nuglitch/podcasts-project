@@ -1,6 +1,8 @@
+import { USE_LOCAL_STORAGE } from 'consts';
+
 const LocalStorage = {
 	save: (key, jsonData, expirationMin) => {
-		if (!localStorage) {
+		if (!localStorage || !USE_LOCAL_STORAGE) {
 			return false;
 		}
 		const expirationMS = expirationMin * 60 * 1000;
@@ -12,7 +14,7 @@ const LocalStorage = {
 		return jsonData;
 	},
 	load: key => {
-		if (!localStorage) {
+		if (!localStorage || !USE_LOCAL_STORAGE) {
 			return false;
 		}
 		let record = localStorage.getItem(key);

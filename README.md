@@ -9,13 +9,13 @@ npm install
 * Run development server:
 
 ```
-npm start:dev
+npm run start:dev
 ```
 
 * Run production server:
 
 ```
-npm start:prod
+npm run start:prod
 ```
 
 Open the web browser to `http://localhost:8888/`

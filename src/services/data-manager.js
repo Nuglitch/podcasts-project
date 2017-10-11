@@ -85,11 +85,11 @@ const DataManager = {
 		const { entry } = data.feed;
 		return entry.map(p => {
 			return {
-				name: _getSavePropFromObject(p, ['im:name', 'label']), //p['im:name'].label,
-				img: _getSavePropFromObject(p, ['im:image', '2', 'label']), //p['im:image'][2].label,
-				author: _getSavePropFromObject(p, ['im:artist', 'label']), //p['im:artist'].label,
-				id: _getSavePropFromObject(p, ['id', 'attributes', 'im:id']), //p.id.attributes['im:id'],
-				summary: _getSavePropFromObject(p, ['summary', 'label']) //p.summary ? p.summary.label || '' : ''
+				name: _getSavePropFromObject(p, ['im:name', 'label']),
+				img: _getSavePropFromObject(p, ['im:image', '2', 'label']),
+				author: _getSavePropFromObject(p, ['im:artist', 'label']),
+				id: _getSavePropFromObject(p, ['id', 'attributes', 'im:id']),
+				summary: _getSavePropFromObject(p, ['summary', 'label'])
 			};
 		});
 	},

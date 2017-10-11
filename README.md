@@ -1,4 +1,8 @@
+# PODCASTER
+
 ### To run
+
+* Node: v6.10.2
 
 * Install the dependencies:
 

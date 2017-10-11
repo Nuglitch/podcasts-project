@@ -27,12 +27,12 @@ const fetchPodcastsListError = () => {
 export const fetchPodcastsList = () => {
 	return dispatch => {
 		dispatch(startLoading());
+		dispatch(fetchPodcastsListRequest());
 		let podcasts = LocalStorage.load(consts.PODCASTS_KEY_STORAGE);
 		if (podcasts) {
 			dispatch(finishLoading());
 			return dispatch(fetchPodcastsListSuccess(podcasts));
 		}
-		dispatch(fetchPodcastsListRequest());
 		return fetchPodcastsListAPI().then(([response, json]) => {
 			if (response.status === 200) {
 				podcasts = DataManager.getPodcastsListData(json);

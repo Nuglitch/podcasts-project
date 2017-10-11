@@ -1,16 +1,16 @@
 import types from 'actions/types';
 
 export const podcastsListReducer = (
-	state = { podcasts: [], filter: '' },
+	state = { podcasts: [], errorFetch: false, filter: ''  },
 	action
 ) => {
 	switch (action.type) {
 		case types.FETCH_PODCASTS_REQUEST:
-			return { ...state, podcasts: [] };
+			return { ...state, podcasts: [], errorFetch: false };
 		case types.FETCH_PODCASTS_SUCCESS:
 			return { ...state, podcasts: action.payload };
 		case types.FETCH_PODCASTS_ERROR:
-			return { ...state };
+			return { ...state, podcasts: [], errorFetch: true };
 		case types.SET_LIST_FILTER:
 			return { ...state, filter: action.payload };
 	}

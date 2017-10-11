@@ -1,3 +1,4 @@
+// aux functions
 const _getElementsByTagName = (xml, tagName, nameSpace) => {
 	let tagItem = xml.getElementsByTagName(tagName);
 	if (!tagItem[0] && nameSpace) {
@@ -11,7 +12,7 @@ const _getValueByTagName = (xml, tagName, nameSpace) => {
 	if (!element) {
 		return '';
 	}
-	return element.innerHTML.replace("<![CDATA[", "").replace("]]>", "");
+	return element.innerHTML.replace('<![CDATA[', '').replace(']]>', '');
 };
 
 const _getParsedDate = date => {
@@ -26,14 +27,14 @@ const _getParsedDate = date => {
 };
 
 const _isUrl = s => {
-   var regexp = /((ftp|http|https):\/\/)?(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/
-   return regexp.test(s);
-}
+	var regexp = /((ftp|http|https):\/\/)?(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/;
+	return regexp.test(s);
+};
 
 const _getParsedId = id => {
 	if (!_isUrl(id)) {
-        return id; //not url id
-    }
+		return id; //not url id
+	}
 	let url = id.replace(/(ftp|http|https):\/\//, '');
 	url = url.split(/\.[a-z]{1,3}\//);
 	if (!url[1]) {
@@ -43,27 +44,52 @@ const _getParsedId = id => {
 };
 
 const _getParsedDuration = duration => {
+	if (!duration) {
+		return 'unknown'; //unknown duration
+	}
 	if (duration.includes(':')) {
 		return duration; //already with correct format
 	}
 	const sec_num = parseInt(duration, 10);
-    const hours   = Math.floor(sec_num / 3600);
-    const minutes = Math.floor((sec_num - (hours * 3600)) / 60);
-    const seconds = sec_num - (hours * 3600) - (minutes * 60);
+	const hours = Math.floor(sec_num / 3600);
+	const minutes = Math.floor((sec_num - hours * 3600) / 60);
+	const seconds = sec_num - hours * 3600 - minutes * 60;
 
-    return `0${hours}`.substr(-2) + ':' + `0${minutes}`.substr(-2) + ':' + `0${seconds}`.substr(-2);
-}
+	return (
+		`0${hours}`.substr(-2) +
+		':' +
+		`0${minutes}`.substr(-2) +
+		':' +
+		`0${seconds}`.substr(-2)
+	);
+};
 
+const _htmlDecode = str => {
+	const temp = document.createElement('textarea');
+	temp.innerHTML = str;
+	return temp.value;
+};
+
+const _getSavePropFromObject = (obj, propsPath) => {
+	if (!(obj instanceof Object)) {
+		return obj;
+	}
+	const p = propsPath[0];
+	propsPath.splice(0, 1);
+	return _getSavePropFromObject(obj[p] || '', propsPath);
+};
+
+// DataManager
 const DataManager = {
 	getPodcastsListData: data => {
 		const { entry } = data.feed;
 		return entry.map(p => {
 			return {
-				name: p['im:name'].label,
-				img: p['im:image'][2].label,
-				author: p['im:artist'].label,
-				id: p.id.attributes['im:id'],
-				summary: p.summary ? p.summary.label || '' : ''
+				name: _getSavePropFromObject(p, ['im:name', 'label']), //p['im:name'].label,
+				img: _getSavePropFromObject(p, ['im:image', '2', 'label']), //p['im:image'][2].label,
+				author: _getSavePropFromObject(p, ['im:artist', 'label']), //p['im:artist'].label,
+				id: _getSavePropFromObject(p, ['id', 'attributes', 'im:id']), //p.id.attributes['im:id'],
+				summary: _getSavePropFromObject(p, ['summary', 'label']) //p.summary ? p.summary.label || '' : ''
 			};
 		});
 	},
@@ -94,21 +120,30 @@ const DataManager = {
 		const items = data.querySelectorAll('item');
 		let result = [];
 		items.forEach(item => {
-			const enclosureElem = _getElementsByTagName(item, 'enclosure', nameSpace);
+			const enclosureElem = _getElementsByTagName(
+				item,
+				'enclosure',
+				nameSpace
+			);
 			result.push({
 				title: _getValueByTagName(item, 'title', nameSpace),
-				description: _getValueByTagName(item, 'description', nameSpace),
+				description: _htmlDecode(
+					_getValueByTagName(item, 'description', nameSpace)
+				),
 				pubDate: _getParsedDate(
 					_getValueByTagName(item, 'pubDate', nameSpace)
 				),
-				duration: _getParsedDuration(_getValueByTagName(item, 'duration', nameSpace)),
-				enclosure: enclosureElem ? enclosureElem.getAttribute('url') : '',
+				duration: _getParsedDuration(
+					_getValueByTagName(item, 'duration', nameSpace)
+				),
+				enclosure: enclosureElem
+					? enclosureElem.getAttribute('url')
+					: '',
 				id: _getParsedId(_getValueByTagName(item, 'guid', nameSpace))
 			});
 		});
 		return result;
 	}
 };
-
 
 export default DataManager;

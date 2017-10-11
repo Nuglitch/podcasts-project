@@ -27,6 +27,7 @@ const fetchPodcastsDetailError = () => {
 export const fetchPodcastsDetail = id => {
 	return dispatch => {
 		dispatch(startLoading());
+		dispatch(fetchPodcastsDetailRequest());
 		const podcastDetail = LocalStorage.load(
 			`${consts.PODCAST_DETAIL_KEY_STORAGE}_${id}`
 		);
@@ -34,7 +35,6 @@ export const fetchPodcastsDetail = id => {
 			dispatch(finishLoading());
 			return dispatch(fetchPodcastsDetailSuccess(podcastDetail));
 		}
-		dispatch(fetchPodcastsDetailRequest());
 		return fetchPodcastEpisodesFromId(id)
 			.then(([response, xml]) => {
 				if (response.status === 200) {

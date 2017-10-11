@@ -12,14 +12,6 @@ CoutElementsListView.propTypes = {
 	num: PropTypes.number.isRequired
 };
 
-const getTableCell = (text, path) => {
-	return (
-		<td>
-			<MyLink to={path}>{text}</MyLink>
-		</td>
-	);
-};
-
 const PodcastEpisodesList = ({ episodes, url }) => {
 	return (
 		<div className="podcast-episodes-list">
@@ -36,18 +28,13 @@ const PodcastEpisodesList = ({ episodes, url }) => {
 					{episodes.map((e, k) => {
 						return (
 							<tr key={k}>
-								{getTableCell(
-									e.title,
-									`${url}/episode/${e.id}`
-								)}
-								{getTableCell(
-									e.pubDate,
-									`${url}/episode/${e.id}`
-								)}
-								{getTableCell(
-									e.duration,
-									`${url}/episode/${e.id}`
-								)}
+								<td>
+									<MyLink to={`${url}/episode/${e.id}`}>
+										{e.title}
+									</MyLink>
+								</td>
+								<td>{e.pubDate}</td>
+								<td>{e.duration}</td>
 							</tr>
 						);
 					})}

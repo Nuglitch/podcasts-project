@@ -9,19 +9,13 @@ npm install
 * Run development server:
 
 ```
-npm start
+npm start:dev
 ```
 
-* Or you can run development server with [webpack-dashboard](https://github.com/FormidableLabs/webpack-dashboard):
+* Run production server:
 
 ```
-npm run dev
+npm start:prod
 ```
 
 Open the web browser to `http://localhost:8888/`
-
-### To build the production package
-
-```
-npm run build
-```

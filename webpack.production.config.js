@@ -5,6 +5,9 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
 var WebpackCleanupPlugin = require('webpack-cleanup-plugin');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
+const HOST = process.env.HOST || "127.0.0.1";
+const PORT = process.env.PORT || "8888";
+
 loaders.push({
 	test: /\.scss$/,
 	loader: ExtractTextPlugin.extract({fallback: 'style-loader', use: 'css-loader?sourceMap&localIdentName=[local]___[hash:base64:5]!sass-loader?outputStyle=expanded'}),
@@ -16,7 +19,7 @@ module.exports = {
 		'./src/index.jsx'
 	],
 	output: {
-		publicPath: './',
+		publicPath: '/',
 		path: path.join(__dirname, 'public'),
 		filename: '[chunkhash].js'
 	},
@@ -26,6 +29,19 @@ module.exports = {
 	},
 	module: {
 		loaders
+	},
+	devServer: {
+		contentBase: "./public",
+		// do not print bundle build stats
+		noInfo: true,
+		// enable HMR
+		hot: false,
+		// embed the webpack-dev-server runtime into the bundle
+		inline: false,
+		// serve index.html in place of 404 responses to allow HTML5 history
+		historyApiFallback: true,
+		port: PORT,
+		host: HOST
 	},
 	plugins: [
 		new WebpackCleanupPlugin(),

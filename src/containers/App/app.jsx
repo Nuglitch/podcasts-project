@@ -8,6 +8,7 @@ import Home from 'containers/Home/home';
 import PodcastDetail from 'containers/PodcastDetail/podcast-detail';
 import { fetchPodcastsList } from 'actions/podcasts-list.actions';
 import 'styles/core.scss';
+import './app.scss';
 
 class App extends React.Component {
 	componentWillMount() {
@@ -19,8 +20,10 @@ class App extends React.Component {
 			<Router>
 				<div>
 					<HeaderContainer />
-					<Route exact path="/" component={Home} />
-					<Route path="/podcast/:podcastId" component={PodcastDetail} />
+					<div className="main-routes-container">
+						<Route exact path="/" component={Home} />
+						<Route path="/podcast/:podcastId" component={PodcastDetail} />
+					</div>
 				</div>
 			</Router>
 		);

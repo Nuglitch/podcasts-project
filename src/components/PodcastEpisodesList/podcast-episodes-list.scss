@@ -8,29 +8,31 @@
 		font-size: $font-size-big;
 		margin-bottom: 20px;
 	}
-
-	.episodes-table {
+	.table-container{
+		padding: 20px;
 		@extend .target-slide;
-		width: 100%;
-		border-collapse: collapse;
-		padding: 0 50px 0 50px;
 
-		th {
-			text-align: left;
-			padding: 5px;
-		}
+		.episodes-table {
+			width: 100%;
+			border-collapse: collapse;
 
-		tbody {
-			tr {
-				color: $color-theme-1;
-				border-top: 1px solid $color-border-input;
-
-				&:nth-child(odd) {
-					background: $color-table-rows
-				}
+			th {
+				text-align: left;
+				padding: 10px;
 			}
-			td {
-				padding: 5px;
+
+			tbody {
+				tr {
+					color: $color-theme-1;
+					border-top: 1px solid $color-border-input;
+
+					&:nth-child(odd) {
+						background: $color-table-rows
+					}
+				}
+				td {
+					padding: 10px;
+				}
 			}
 		}
 	}

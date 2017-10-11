@@ -16,30 +16,32 @@ const PodcastEpisodesList = ({ episodes, url }) => {
 	return (
 		<div className="podcast-episodes-list">
 			<CoutElementsListView num={episodes.length} />
-			<table className="episodes-table">
-				<thead>
-					<tr>
-						<th>Title</th>
-						<th>Date</th>
-						<th>Duration</th>
-					</tr>
-				</thead>
-				<tbody>
-					{episodes.map((e, k) => {
-						return (
-							<tr key={k}>
-								<td>
-									<MyLink to={`${url}/episode/${e.id}`}>
-										{e.title}
-									</MyLink>
-								</td>
-								<td>{e.pubDate}</td>
-								<td>{e.duration}</td>
-							</tr>
-						);
-					})}
-				</tbody>
-			</table>
+			<div className="table-container">
+				<table className="episodes-table">
+					<thead>
+						<tr>
+							<th>Title</th>
+							<th>Date</th>
+							<th>Duration</th>
+						</tr>
+					</thead>
+					<tbody>
+						{episodes.map((e, k) => {
+							return (
+								<tr key={k}>
+									<td>
+										<MyLink to={`${url}/episode/${e.id}`}>
+											{e.title}
+										</MyLink>
+									</td>
+									<td>{e.pubDate}</td>
+									<td>{e.duration}</td>
+								</tr>
+							);
+						})}
+					</tbody>
+				</table>
+			</div>
 		</div>
 	);
 };

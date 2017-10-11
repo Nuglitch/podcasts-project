@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import ItemListContainer from 'containers/ItemListContainer/item-list-container';
+import './podcasts-list-container.scss';
 
 class PodcastsListContainer extends React.Component {
 	render() {
